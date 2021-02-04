@@ -2,11 +2,11 @@
 
 ## 抽象语法（AST）
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201152708246.png" alt="image-20201201152708246" style="zoom: 80%;" />
+<img src="https://i.loli.net/2021/01/28/98IcVAmboLXpOkN.png" alt="image-20201201152708246" style="zoom: 80%;" />
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201153045728.png" style="zoom:90%;" />
+<img src="https://i.loli.net/2021/01/28/ql31vaU8gukN2KB.png" style="zoom:90%;" />
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201153142420.png" alt="image-20201201153142420" style="zoom:92%;" />
+<img src="https://i.loli.net/2021/01/28/36zWSgDsiJTUIev.png" alt="image-20201201153142420" style="zoom:92%;" />
 
 ## 语义分析（Type checking）
 
@@ -17,18 +17,13 @@
 
 代码结构：
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201170631364.png" alt="image-20201201170631364" style="zoom:80%;" />
-
-- semant：
-- translate：
-- frame：
-- temp：
+<img src="https://i.loli.net/2021/01/28/fKTBle8vrDkqs3H.png" alt="image-20201201170631364" style="zoom:80%;" />
 
 ### symbol
 
 为了避免字符串比较，把每个字符串转化为一个`symbol`对象，它的所有出现都被映射成了同一个symbol
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201154033135.png" alt="image-20201201154033135" style="zoom: 70%;" />
+<img src="https://i.loli.net/2021/01/28/3yJUgCqdLQ7iWxw.png" alt="image-20201201154033135" style="zoom: 70%;" />
 
 - `S_table` : 将 `S_Symbols` 映射到 bindings
 -  `S_Symbol` 和  `S_name` 在symbol 和 name间相互转换
@@ -41,7 +36,7 @@
 
 绑定的是什么？类型标识符关联`Ty_ty`
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201155056429.png" alt="image-20201201155056429" style="zoom:67%;" />
+<img src="https://i.loli.net/2021/01/28/zcj2IG9O6aCZ7ir.png" alt="image-20201201155056429" style="zoom:67%;" />
 
 - 基本类型是`int`和`string`
 
@@ -60,9 +55,9 @@
 
 ### env
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201190522424.png" alt="image-20201201190522424" style="zoom: 67%;" />
+<img src="https://i.loli.net/2021/01/28/8JbpetLzi4TW7Nd.png" alt="image-20201201190522424" style="zoom: 67%;" />
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201190715629.png" alt="image-20201201190715629" style="zoom:67%;" />
+<img src="https://i.loli.net/2021/01/28/zT3nKCatZmLre6W.png" alt="image-20201201190715629" style="zoom:67%;" />
 
 - 对于值标识符我们需要知道它是变量(`E_varEntry`)或者函数(` E_funEntry`)，我们用`E_enventry` 来记录这个信息。
 
@@ -73,13 +68,13 @@
     - 参数(`Ty_tyList formals`)
     - 返回类型(` Ty_ty result`)
 
-    <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201160923952.png" alt="image-20201201160923952" style="zoom:80%;" />
+    <img src="https://i.loli.net/2021/01/28/nL3uFMR6m9iATDc.png" alt="image-20201201160923952" style="zoom:80%;" />
 
     （`Ty_tyList` 是一连串的 type）
 
     - `Tr_level level`
 
-    <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201190544905.png" alt="image-20201201190544905" style="zoom: 67%;" />
+    <img src="https://i.loli.net/2021/01/28/sBEhv8ZdWctL1m5.png" alt="image-20201201190544905" style="zoom: 67%;" />
 
 - `base_tenv`:  maps the symbol `int` to `Ty_Int` and `string` to `Ty_String`
 - `base_venv`:  contains bindings for predefined functions`flush`, `ord`, `chr`, `size`, and so on
@@ -88,15 +83,15 @@
 
 执行语义分析（类型检查），*后续还会扩充功能：将表达式转化为中间代码*
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201162035605.png" alt="image-20201201162035605" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/7DUH1aGVOXAlBQY.png" alt="image-20201201162035605" style="zoom:80%;" />
 
 代码的逻辑：调用语法分析器来生成 `A_exp`, 接着对这个表达式调用 `SEM_transProg`
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201161524564.png" alt="image-20201201161524564" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/e5RfUM8r4jCQYpX.png" alt="image-20201201161524564" style="zoom:80%;" />
 
 - `trans*`分别转换 `A_var`、`A_exp` 和 `A_Dec` 三种表达式
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201161734227.png" alt="image-20201201161734227" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/17ktnjEVPM9ONsK.png" alt="image-20201201161734227" style="zoom:80%;" />
 
 - 返回值是 `expty`，包含两部分：
   - `Tr_exp exp`: 转换为中间代码的表达式
@@ -104,11 +99,11 @@
 
 ## 语义分析（Activation Records）
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201163445549.png" alt="image-20201201163445549" style="zoom: 67%;" />
+<img src="https://i.loli.net/2021/01/28/SJhI9prOb7fuieB.png" alt="image-20201201163445549" style="zoom: 67%;" />
 
 ### frame/x86frame
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201163837336.png" alt="image-20201201163837336" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/eKCh6kRW2qVHFaN.png" alt="image-20201201163837336" style="zoom:80%;" />
 
 + `F_frame`：栈帧的抽象表示，有关形式参数和分配在栈帧中局部变量的信息。
 
@@ -119,13 +114,13 @@
 
 + `F_access`：描述存放在栈中或寄存器中的形式参数和局部变量。
 
-  <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201164831893.png" alt="image-20201201164831893" style="zoom:80%;" />
+  <img src="https://i.loli.net/2021/01/28/diTFh6jkH3r1bZy.png" alt="image-20201201164831893" style="zoom:80%;" />
 
   - 可以由 `InFrame()` 和 `InReg()` 构造 `F_access` 对象。
 
 + `F_newFrame(Temp_label name, U_boolList formals)`：返回一个新栈帧。
 
-  <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201164610709.png" alt="image-20201201164610709" style="zoom:80%;" />
+  <img src="https://i.loli.net/2021/01/28/rxGWafcU5l1YJdb.png" alt="image-20201201164610709" style="zoom:80%;" />
 
 + `F_formals()`：返回形式参数的位置（从被调用函数的角度来看）。
 
@@ -205,13 +200,13 @@ frame模块还需要包括机器相关的定义（7.2.2简单变量）
 
 - 接口
 
-  <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201204231650809.png" alt="image-20201204231650809" style="zoom:50%;" />
+  <img src="https://i.loli.net/2021/01/28/xRkfhXVsuMB4odI.png" alt="image-20201204231650809" style="zoom:50%;" />
 
   - `F_FP`: 返回当前的fp
   
   - `F_Exp`：将一个`F_access`转换为一个Tree表达式（`T_exp`）
   
-    <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201204232243336.png" alt="image-20201204232243336" style="zoom: 60%;" />
+    <img src="https://i.loli.net/2021/01/28/JZojayAPCTuzc4v.png" alt="image-20201204232243336" style="zoom: 60%;" />
   
     ​																						const k是offset
   
@@ -224,7 +219,7 @@ frame模块还需要包括机器相关的定义（7.2.2简单变量）
     传递 ` T_Temp(F_FP()` 的原因是，必须要获得当前access所在的frame pointer，如果access是一个Reg，就简单的忽略fp
   
 - 调用运行时系统的函数
-  <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205141807398.png" alt="image-20201205141807398" style="zoom:50%;" />
+  <img src="https://i.loli.net/2021/01/28/wNyY3KRZHznXGkT.png" alt="image-20201205141807398" style="zoom:50%;" />
 
   - Tiger没有对存储器进行管理的机制，所以需要调用外部c或汇编编写的函数
 
@@ -240,21 +235,21 @@ frame模块还需要包括机器相关的定义（7.2.2简单变量）
 
   - 调用：
 
-    <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205142824838.png" alt="image-20201205142824838" style="zoom:50%;" />
+    <img src="https://i.loli.net/2021/01/28/BP5TkrvoebUhG8R.png" alt="image-20201205142824838" style="zoom:50%;" />
 
 #### fragment part
 
 （7.3.3 fragment）
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205132712877.png" alt="image-20201205132712877" style="zoom:48%;" />
+<img src="https://i.loli.net/2021/01/28/LiMpyoJlz2OD4ZW.png" alt="image-20201205132712877" style="zoom:48%;" />
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205132842664.png" alt="image-20201205132842664" style="zoom:50%;" />
+<img src="https://i.loli.net/2021/01/28/ftVn5Rzl4iEZBxI.png" alt="image-20201205132842664" style="zoom:50%;" />
 
 
 
 ### escape
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201165655315.png" alt="image-20201201165655315" style="zoom:75%;" />
+<img src="https://i.loli.net/2021/01/28/CQkMAtVezFy2wlJ.png" alt="image-20201201165655315" style="zoom:75%;" />
 
 - `Esc_findEscape(A_exp exp)`
   - 遍历语法树（和类型检查相似），判断每一个变量
@@ -266,7 +261,7 @@ frame模块还需要包括机器相关的定义（7.2.2简单变量）
 
 ​	语义分析阶段还不知道变量具体要保存在哪里。所以用temp表示暂时保存在寄存器中的这些变量。用label表示其准确地址还需要确定。
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201170429557.png" alt="image-20201201170429557" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/n24cr7OsKQ63qhJ.png" alt="image-20201201170429557" style="zoom:80%;" />
 
 - `Temp_temp`：临时变量，局部变量的抽象名，暂时保存在寄存器中的值。
 - `Temp_label`：标号，静态存储器地址的抽象名，机器语言中的位置。
@@ -274,7 +269,7 @@ frame模块还需要包括机器相关的定义（7.2.2简单变量）
 - `Temp_newlabel()` returns a new label from an infinite set of labels.
 - `Temp_namedlabel(string)` returns a new label whose assembly-language name is string
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201215193550240.png" alt="image-20201215193550240" style="zoom:70%;" />
+<img src="https://i.loli.net/2021/01/28/VtidXSo1IAMbO3x.png" alt="image-20201215193550240" style="zoom:70%;" />
 
 ### translate
 
@@ -318,7 +313,7 @@ Tr_access Tr_allocLocal(Tr_level level, bool escape);
 
 管理静态链、追踪层次信息
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201201164027897.png" alt="image-20201201164027897" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/g4t5uxwKMm31Lcq.png" alt="image-20201201164027897" style="zoom:80%;" />
 
 
 
@@ -424,7 +419,7 @@ Translate模块还需要实现所有MEM节点的管理，这样Semant模块才�
     
     - 引入fragment（见frame模块）
     
-      <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205132943648.png" alt="image-20201205132943648" style="zoom:50%;" />
+      <img src="https://i.loli.net/2021/01/28/ayrHO4upKLZk9QF.png" alt="image-20201205132943648" style="zoom:50%;" />
     
     - 对于每个字符串文字常数 lit，Translate 模块做两个操作：
     
@@ -443,14 +438,14 @@ Translate模块还需要实现所有MEM节点的管理，这样Semant模块才�
         ```
     
     - 注意：buf不只是字符，还需要告诉编译器长度，具体实现可以是：
-      <img src="file:///C:\Users\olivia\Documents\Tencent Files\758970771\Image\Group2\H~\7}\H~7}B@69ETIKHGOXJA[O[FR.jpg" alt="img" style="zoom:70%;" />
+      <img src="C:\Users\olivia\Documents\Tencent Files\758970771\Image\Group2\H~\7}\H~7}B@69ETIKHGOXJA[O[FR.jpg" alt="img" style="zoom:70%;" />
     
 - record和array的创建（7.2.11）
 
 
   - array
 
-  <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205141725636.png" alt="image-20201205141725636" style="zoom: 40%;" />
+  <img src="https://i.loli.net/2021/01/28/4fGOuxdwpzoNs1S.png" alt="image-20201205141725636" style="zoom: 40%;" />
 
   - record
 
@@ -466,7 +461,7 @@ Translate模块还需要实现所有MEM节点的管理，这样Semant模块才�
 
   - while
 
-    <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205143418102.png" alt="image-20201205143418102" style="zoom:50%;" />
+    <img src="https://i.loli.net/2021/01/28/1ahpVsfjeK3vOUb.png" alt="image-20201205143418102" style="zoom:50%;" />
 
   - break: jump to done(label)
 
@@ -478,7 +473,7 @@ Translate模块还需要实现所有MEM节点的管理，这样Semant模块才�
 
   - for
 
-    <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201205144100951.png" alt="image-20201205144100951" style="zoom:50%;" />
+    <img src="https://i.loli.net/2021/01/28/5xOz2A63G9pFEug.png" alt="image-20201205144100951" style="zoom:50%;" />
 
 ## 基本块和轨迹
 
@@ -490,7 +485,7 @@ Translate模块还需要实现所有MEM节点的管理，这样Semant模块才�
 
 ### canon
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201216001309635.png" alt="image-20201216001309635" style="zoom: 80%;" />
+<img src="https://i.loli.net/2021/01/28/LuToVwiAx47yO3v.png" alt="image-20201216001309635" style="zoom: 80%;" />
 
 #### Linearize
 
@@ -524,7 +519,7 @@ $$
 
 Basic的顺序可以任意选择，采用如下的算法：
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201216002617510.png" alt="image-20201216002617510" style="zoom: 70%;" />
+<img src="https://i.loli.net/2021/01/28/Vmjid26cPTJ9qrf.png" alt="image-20201216002617510" style="zoom: 70%;" />
 
 ## 指令选择
 
@@ -532,13 +527,13 @@ Basic的顺序可以任意选择，采用如下的算法：
 
 ### assem
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201216153647621.png" alt="image-20201216153647621" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/IclUQnL92tObzXA.png" alt="image-20201216153647621" style="zoom:80%;" />
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201216153436962.png" alt="image-20201216153436962" style="zoom:80%;" />![image-20201216153520558](C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201216153520558.png)
+<img src="https://i.loli.net/2021/01/28/wfcokIruhPEYy5s.png" alt="image-20201216153436962" style="zoom:80%;" />![image-20201216153520558](https://i.loli.net/2021/01/28/OglxcSGqmYN4f6k.png)
 
 ### codgen
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201216150402605.png" alt="image-20201216150402605" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/01/28/yzBxH13dAw2lWQu.png" alt="image-20201216150402605" style="zoom:80%;" />
 
 - 参数：
 
@@ -564,7 +559,7 @@ Basic的顺序可以任意选择，采用如下的算法：
 
 - 实现munchStm
 
-  <img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201216153540466.png" alt="image-20201216153540466" style="zoom:80%;" />
+  <img src="https://i.loli.net/2021/01/28/1FqcBZMlHQLvEub.png" alt="image-20201216153540466" style="zoom:80%;" />
 
   ```c
   static void munchStm(T_stm s) {
@@ -580,7 +575,7 @@ Basic的顺序可以任意选择，采用如下的算法：
 
 ### flowgraph
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201210171204624.png" alt="image-20201210171204624" style="zoom:67%;" />
+<img src="https://i.loli.net/2021/01/28/ncPHZUWmz3uAiYp.png" alt="image-20201210171204624" style="zoom:67%;" />
 
 - `FG_def(n)`: 指令n定义的变量列表
 - `FG_use(n)`: 指令n使用过的变量列表
@@ -588,7 +583,7 @@ Basic的顺序可以任意选择，采用如下的算法：
 
 ### liveness
 
-<img src="C:\Users\olivia\AppData\Roaming\Typora\typora-user-images\image-20201210162806905.png" alt="image-20201210162806905" style="zoom:67%;" />
+<img src="https://i.loli.net/2021/01/28/5xSnTduyJQaZhrt.png" alt="image-20201210162806905" style="zoom:67%;" />
 
 - Live_graph:
   - G_graph graph: 冲突图
